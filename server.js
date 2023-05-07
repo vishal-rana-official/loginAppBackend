@@ -3,7 +3,6 @@ import cors from 'cors'
 import morgan from 'morgan'
 import connect from './database/conn.js'
 import router from './router/route.js'
-import path from 'path'
 
 const app = express() 
 
@@ -19,11 +18,6 @@ app.get('/',(req,res)=> {
 })
 
 app.use('/api', router)
-app.use(express.static(path.join(__dirname,"./client/build")))
-
-app.use("*", function(req, res){
-    res.sendFile(path.join(__dirname,"./client/build/index.html"))
-})
 
 connect().then(()=> {
     try {
